@@ -5,6 +5,9 @@ const args = require('minimist')(process.argv.slice(2));
 // Serve static HTML files
 app.use(express.static('./public'));
 
+// Make Express use its own built-in body parser to handle JSON
+app.use(express.json());
+
 // See what is stored in the object produced by minimist
 console.log(args)
 // Store help text
@@ -116,23 +119,23 @@ app.get('/app/flip', (req, res) => {
 
 // Endpoint /app/flips/:number that returns JSON including an array of the raw random flips and a summary.
 app.get('/app/flips/:number', (req, res) => {
-    const flips = coinFlips(req.params.number)
+    const flips = coinFlips(req.body.number)
     res.status(200).json({"raw": flips,"summary": countFlips(flips)})
 })
 
 // Endpoint /app/flip/call/heads that returns the result of a random flip match against heads or tails as JSON.
 app.get('/app/flip/call/:call', (req, res) => {
-    res.status(200).json(flipACoin(req.params.call))
+    res.status(200).json(flipACoin(req.body.call))
 })
 
 // Endpoint /app/flip/call/heads that returns the result of a random flip match against heads or tails as JSON.
 app.get('/app/flip/call/:call', (req, res) => {
-    res.status(200).json(flipACoin(req.params.call))
+    res.status(200).json(flipACoin(req.body.call))
 })
 
 // Endpoint /app/flip/call/heads that returns the result of a random flip match against heads or tails as JSON.
 app.get('/app/flip/call/:call', (req, res) => {
-    res.status(200).json(flipACoin(req.params.call))
+    res.status(200).json(flipACoin(req.body.call))
 })
 
 // Default API endpoint that returns 404 Not found for any endpoints that are not defined.
