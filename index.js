@@ -8,6 +8,11 @@ app.use(express.static('./public'));
 // Make Express use its own built-in body parser to handle JSON
 app.use(express.json());
 
+// Add cors dependency
+const cors = require('cors')
+// Set up cors middleware on all endpoints
+app.use(cors())
+
 // See what is stored in the object produced by minimist
 console.log(args)
 // Store help text
