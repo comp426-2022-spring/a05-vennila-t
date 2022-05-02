@@ -31,7 +31,7 @@ if (args.help || args.h) {
 // Require Express.js
 const express = require('express')
 const app = express()
-const db = require('.src/services/database.js')
+const db = require('./src/services/database.js')
 const fs = require('fs')
 const morgan = require('morgan')
 
