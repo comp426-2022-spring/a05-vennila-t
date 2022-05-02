@@ -1,17 +1,7 @@
 // Place your server entry point code here
+
 // server.js file that takes an arbitrary port number as a command line argument (i.e. I should be able to run it with node server.js. The port should default to 5000 if no argument is given.
 const args = require('minimist')(process.argv.slice(2));
-
-// Serve static HTML files
-app.use(express.static('./public'));
-
-// Make Express use its own built-in body parser to handle JSON
-app.use(express.json());
-
-// Add cors dependency
-const cors = require('cors')
-// Set up cors middleware on all endpoints
-app.use(cors())
 
 // See what is stored in the object produced by minimist
 console.log(args)
@@ -44,6 +34,18 @@ const app = express()
 const db = require('.src/services/database.js')
 const fs = require('fs')
 const morgan = require('morgan')
+
+// Serve static HTML files
+app.use(express.static('./public'));
+
+// Make Express use its own built-in body parser to handle JSON
+app.use(express.json());
+
+// Add cors dependency
+const cors = require('cors')
+// Set up cors middleware on all endpoints
+app.use(cors())
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
